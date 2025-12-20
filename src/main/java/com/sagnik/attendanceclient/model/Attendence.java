@@ -36,7 +36,7 @@ public class Attendence {
 //    [9,10,12,2,4,7]
     private List<Long> inOutHours;
 
-
+    private int hours;
     private long manualInEpoch;
     private long manualOutEpoch;
 
