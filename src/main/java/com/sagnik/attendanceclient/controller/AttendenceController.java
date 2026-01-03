@@ -1,8 +1,9 @@
 package com.sagnik.attendanceclient.controller;
 
 
-import com.sagnik.attendanceclient.model.Attendence;
-import com.sagnik.attendanceclient.service.AttendenceService;
+import com.sagnik.attendanceclient.model.ApprovalStatus;
+import com.sagnik.attendanceclient.model.Attendance;
+import com.sagnik.attendanceclient.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,26 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/attendence")
 public class AttendenceController {
 @Autowired
-private AttendenceService service;
-@GetMapping("/getAttendence/{userId}")
-    public ResponseEntity<Attendence> getAttendence(@PathVariable String userId)
+private AttendanceService service;
+//CardSwipe Entry
+@GetMapping("/getAttendance/{userId,officeId}")
+    public ResponseEntity<Attendance> getAttendance(@PathVariable String userId, String officeId)
 {
-    return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.getAttendence(userId));
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.getAttendance(userId,officeId));
 }
-//    Manual Attendence Entry
+//    Manual Attendance Entry
+@GetMapping("/getManualAttendance/{userId,officeId}")
+public ResponseEntity<Attendance> getManualAttendance(@PathVariable String userId, String officeId)
+{
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.getManualAttendance(userId,officeId));
+}
+
+
+//    Attendance Approval
+    @GetMapping("/getApproval/{userId}")
+    public ResponseEntity<ApprovalStatus> getApproval(@PathVariable String userId)
+    {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.getApproval(userId));
+    }
+    @GetMapping("/setApproval/{userId,status}")
+    public ResponseEntity<ApprovalStatus> setApproval(@PathVariable String userId,ApprovalStatus status)
+    {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.setApproval(userId,status));
+    }
+//    Get Attendance by employee id
 
 
 
-//    Attendence Approval
+//    Get Attendance by Office
 
 
-//    Get Attendence by employee id
-
-
-//    Get Attendence by Office
-
-
-//    Get All Attendence Record
+//    Get All Attendance Record
 
 
 
