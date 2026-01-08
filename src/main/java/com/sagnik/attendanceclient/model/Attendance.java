@@ -1,11 +1,12 @@
 package com.sagnik.attendanceclient.model;
 
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     private String userId;
 
@@ -31,7 +32,7 @@ public class Attendance {
 
 //    [9,10,12,2,4,7]
     @ElementCollection
-    private List<Long> inOutHours=new ArrayList<>();
+    private List<Long> inOutHours;
 
     private int hours;
     private long manualInEpoch;
@@ -40,3 +41,5 @@ public class Attendance {
 
 
 }
+
+

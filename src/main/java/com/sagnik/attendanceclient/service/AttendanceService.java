@@ -20,8 +20,13 @@ import static com.sagnik.attendanceclient.model.ApprovalStatus.PENDING;
 
 @Service
 public class AttendanceService {
-    @Autowired
-    private AttendenceRepository repository;
+
+
+    private final AttendenceRepository repository;
+    public AttendanceService(AttendenceRepository repository) {
+        this.repository = repository;
+    }
+
     public Attendance addAttendance(Attendance attendance)
     {
         return repository.save(attendance);
